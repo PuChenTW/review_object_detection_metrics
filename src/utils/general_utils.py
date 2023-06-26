@@ -4,7 +4,7 @@ import os
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-from PyQt5 import QtCore, QtGui
+from PyQt6 import QtCore, QtGui
 from src.utils.enumerators import BBFormat
 
 
@@ -144,9 +144,9 @@ def remove_file_extension(filename):
 def image_to_pixmap(image):
     image = image.astype(np.uint8)
     if image.shape[2] == 4:
-        qformat = QtGui.QImage.Format_RGBA8888
+        qformat = QtGui.QImage.Format.Format_RGBA8888
     else:
-        qformat = QtGui.QImage.Format_RGB888
+        qformat = QtGui.QImage.Format.Format_RGB888
 
     image = QtGui.QImage(image.data, image.shape[1], image.shape[0], image.strides[0], qformat)
     # image= image.rgbSwapped()
@@ -156,7 +156,7 @@ def image_to_pixmap(image):
 def show_image_in_qt_component(image, label_component):
     pix = image_to_pixmap((image).astype(np.uint8))
     label_component.setPixmap(pix)
-    label_component.setAlignment(QtCore.Qt.AlignCenter)
+    label_component.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
 
 def get_files_recursively(directory, extension="*"):

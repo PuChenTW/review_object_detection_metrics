@@ -2,18 +2,18 @@
 
 # Form implementation generated from reading ui file 'results_ui.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt6 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_Form_results(object):
     def setupUi(self, Form_results):
         Form_results.setObjectName("Form_results")
-        Form_results.setWindowModality(QtCore.Qt.ApplicationModal)
+        Form_results.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
         Form_results.resize(804, 500)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Form_results.sizePolicy().hasHeightForWidth())
@@ -27,7 +27,7 @@ class Ui_Form_results(object):
         font.setBold(True)
         font.setWeight(75)
         self.lbl_groundtruth_dir_23.setFont(font)
-        self.lbl_groundtruth_dir_23.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbl_groundtruth_dir_23.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lbl_groundtruth_dir_23.setObjectName("lbl_groundtruth_dir_23")
         self.txb_results = QtWidgets.QTextBrowser(Form_results)
         self.txb_results.setGeometry(QtCore.QRect(10, 40, 781, 401))
@@ -63,5 +63,5 @@ if __name__ == "__main__":
     ui = Ui_Form_results()
     ui.setupUi(Form_results)
     Form_results.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 

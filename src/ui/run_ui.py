@@ -2,8 +2,8 @@ import os
 
 import src.utils.converter as converter
 import src.utils.general_utils as general_utils
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QMainWindow, QMessageBox
+from PyQt6 import QtCore, QtWidgets, QtGui
+from PyQt6.QtWidgets import QFileDialog, QMainWindow, QMessageBox
 from src.evaluators.coco_evaluator import get_coco_summary
 from src.evaluators.pascal_voc_evaluator import (get_pascalvoc_metrics, plot_precision_recall_curve,
                                                  plot_precision_recall_curves)
@@ -38,7 +38,7 @@ class Main_Dialog(QMainWindow, Main_UI):
 
     def center_screen(self):
         size = self.size()
-        desktopSize = QtWidgets.QDesktopWidget().screenGeometry()
+        desktopSize = QtGui.QGuiApplication.primaryScreen().availableGeometry()
         top = (desktopSize.height() / 2) - (size.height() / 2)
         left = (desktopSize.width() / 2) - (size.width() / 2)
         self.move(left, top)
@@ -46,9 +46,9 @@ class Main_Dialog(QMainWindow, Main_UI):
     def closeEvent(self, event):
         conf = self.show_popup('Are you sure you want to close the program?',
                                'Closing',
-                               buttons=QMessageBox.Yes | QMessageBox.No,
-                               icon=QMessageBox.Question)
-        if conf == QMessageBox.Yes:
+                               buttons=QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.No,
+                               icon=QMessageBox.Icon.Question)
+        if conf == QMessageBox.StandardButton.Yes:
             event.accept()
         else:
             event.ignore()
@@ -56,8 +56,8 @@ class Main_Dialog(QMainWindow, Main_UI):
     def show_popup(self,
                    message,
                    title,
-                   buttons=QMessageBox.Ok | QMessageBox.Cancel,
-                   icon=QMessageBox.Information):
+                   buttons=QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel,
+                   icon=QMessageBox.Icon.Information):
         self.msgBox.setIcon(icon)
         self.msgBox.setText(message)
         self.msgBox.setWindowTitle(title)
@@ -105,8 +105,8 @@ class Main_Dialog(QMainWindow, Main_UI):
                 self.show_popup(
                     f'For the selected annotation type, it is necessary to inform a directory with the dataset images.\nDirectory is empty or does not have valid images.',
                     'Invalid image directory',
-                    buttons=QMessageBox.Ok,
-                    icon=QMessageBox.Information)
+                    buttons=QMessageBox.StandardButton.Ok,
+                    icon=QMessageBox.Icon.Information)
                 return False
         # if its detection format requires class_id, text file containing the classes of objects must be informed
         if self.rad_det_ci_format_text_yolo_rel.isChecked(
@@ -122,8 +122,8 @@ class Main_Dialog(QMainWindow, Main_UI):
                 self.show_popup(
                     f'For the selected annotation type, it is necessary to inform a valid text file listing one class per line.\nCheck if the path for the .txt file is correct and if it contains at least one class.',
                     'Invalid text file or not found',
-                    buttons=QMessageBox.Ok,
-                    icon=QMessageBox.Information)
+                    buttons=QMessageBox.StandardButton.Ok,
+                    icon=QMessageBox.Icon.Information)
                 return False
         return True
 
@@ -160,8 +160,8 @@ class Main_Dialog(QMainWindow, Main_UI):
             self.show_popup(
                 'No file was found for the selected detection format in the annotations directory.',
                 'No file was found',
-                buttons=QMessageBox.Ok,
-                icon=QMessageBox.Information)
+                buttons=QMessageBox.StandardButton.Ok,
+                icon=QMessageBox.Icon.Information)
             return ret, False
 
         # If detection requires class_id, replace the detection names (integers) by a class from the txt file
@@ -179,8 +179,8 @@ class Main_Dialog(QMainWindow, Main_UI):
                 self.show_popup(
                     'For the selected groundtruth format, a valid file with classes must be informed.',
                     'Invalid file',
-                    buttons=QMessageBox.Ok,
-                    icon=QMessageBox.Information)
+                    buttons=QMessageBox.StandardButton.Ok,
+                    icon=QMessageBox.Icon.Information)
                 return
 
         gt_annotations = self.load_annotations_gt()
@@ -188,15 +188,15 @@ class Main_Dialog(QMainWindow, Main_UI):
             self.show_popup(
                 'Directory with ground-truth annotations was not specified or do not contain annotations in the chosen format.',
                 'Annotations not found',
-                buttons=QMessageBox.Ok,
-                icon=QMessageBox.Information)
+                buttons=QMessageBox.StandardButton.Ok,
+                icon=QMessageBox.Icon.Information)
             return
         if self.dir_images_gt is None:
             self.show_popup(
                 'Directory with ground-truth images was not specified or do not contain images.',
                 'Images not found',
-                buttons=QMessageBox.Ok,
-                icon=QMessageBox.Information)
+                buttons=QMessageBox.StandardButton.Ok,
+                icon=QMessageBox.Icon.Information)
             return
         # Open statistics dialot on the gt annotations
         self.dialog_statistics.show_dialog(BBType.GROUND_TRUTH, gt_annotations, None,
@@ -275,8 +275,8 @@ class Main_Dialog(QMainWindow, Main_UI):
             self.show_popup(
                 'Directory with ground-truth images was not specified or do not contain images.',
                 'Images not found',
-                buttons=QMessageBox.Ok,
-                icon=QMessageBox.Information)
+                buttons=QMessageBox.StandardButton.Ok,
+                icon=QMessageBox.Icon.Information)
             return
         # Open statistics dialog on the detections
         self.dialog_statistics.show_dialog(BBType.DETECTED, gt_annotations, det_annotations,
@@ -299,8 +299,8 @@ class Main_Dialog(QMainWindow, Main_UI):
         if self.dir_save_results is None or os.path.isdir(self.dir_save_results) is False:
             self.show_popup('Output directory to save results was not specified or does not exist.',
                             'Invalid output directory',
-                            buttons=QMessageBox.Ok,
-                            icon=QMessageBox.Information)
+                            buttons=QMessageBox.StandardButton.Ok,
+                            icon=QMessageBox.Icon.Information)
             return
         # Get detections
         det_annotations, passed = self.load_annotations_det()
@@ -311,8 +311,8 @@ class Main_Dialog(QMainWindow, Main_UI):
             self.show_popup(
                 'No detection of the selected type was found in the folder.\nCheck if the selected type corresponds to the files in the folder and try again.',
                 'Invalid detections',
-                buttons=QMessageBox.Ok,
-                icon=QMessageBox.Information)
+                buttons=QMessageBox.StandardButton.Ok,
+                icon=QMessageBox.Icon.Information)
             return
 
         gt_annotations = self.load_annotations_gt()
@@ -320,8 +320,8 @@ class Main_Dialog(QMainWindow, Main_UI):
             self.show_popup(
                 'No ground-truth bounding box of the selected type was found in the folder.\nCheck if the selected type corresponds to the files in the folder and try again.',
                 'Invalid groundtruths',
-                buttons=QMessageBox.Ok,
-                icon=QMessageBox.Information)
+                buttons=QMessageBox.StandardButton.Ok,
+                icon=QMessageBox.Icon.Information)
             return
 
         coco_res = {}
@@ -388,7 +388,7 @@ class Main_Dialog(QMainWindow, Main_UI):
         if len(coco_res) + len(pascal_res) == 0:
             self.show_popup('No results to show',
                             'No results',
-                            buttons=QMessageBox.Ok,
-                            icon=QMessageBox.Information)
+                            buttons=QMessageBox.StandardButton.Ok,
+                            icon=QMessageBox.Icon.Information)
         else:
             self.dialog_results.show_dialog(coco_res, pascal_res, self.dir_save_results)

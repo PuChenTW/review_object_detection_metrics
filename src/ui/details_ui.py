@@ -2,12 +2,12 @@
 
 # Form implementation generated from reading ui file 'details_ui.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.3
+# Created by: PyQt6 UI code generator 5.12.3
 #
 # WARNING! All changes made in this file will be lost!
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Dialog(object):
@@ -16,9 +16,9 @@ class Ui_Dialog(object):
         Dialog.resize(892, 442)
         self.lbl_sample_image = QtWidgets.QLabel(Dialog)
         self.lbl_sample_image.setGeometry(QtCore.QRect(520, 30, 361, 341))
-        self.lbl_sample_image.setFrameShape(QtWidgets.QFrame.Box)
-        self.lbl_sample_image.setTextFormat(QtCore.Qt.AutoText)
-        self.lbl_sample_image.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbl_sample_image.setFrameShape(QtWidgets.QFrame.Shape.Box)
+        self.lbl_sample_image.setTextFormat(QtCore.Qt.TextFormat.AutoText)
+        self.lbl_sample_image.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lbl_sample_image.setObjectName("lbl_sample_image")
         self.txb_statistics = QtWidgets.QTextEdit(Dialog)
         self.txb_statistics.setGeometry(QtCore.QRect(10, 30, 501, 371))
@@ -35,14 +35,14 @@ class Ui_Dialog(object):
         self.btn_save_image.setObjectName("btn_save_image")
         self.lbl_image_file_name = QtWidgets.QLabel(Dialog)
         self.lbl_image_file_name.setGeometry(QtCore.QRect(560, 10, 281, 20))
-        self.lbl_image_file_name.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbl_image_file_name.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lbl_image_file_name.setObjectName("lbl_image_file_name")
         self.chb_gt_bb = QtWidgets.QCheckBox(Dialog)
         self.chb_gt_bb.setGeometry(QtCore.QRect(520, 380, 161, 22))
         self.chb_gt_bb.setObjectName("chb_gt_bb")
         self.chb_det_bb = QtWidgets.QCheckBox(Dialog)
         self.chb_det_bb.setGeometry(QtCore.QRect(730, 380, 141, 22))
-        self.chb_det_bb.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.chb_det_bb.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.chb_det_bb.setObjectName("chb_det_bb")
         self.btn_previous_image = QtWidgets.QPushButton(Dialog)
         self.btn_previous_image.setGeometry(QtCore.QRect(520, 0, 31, 27))
@@ -101,4 +101,4 @@ if __name__ == "__main__":
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
     Dialog.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

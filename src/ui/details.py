@@ -3,7 +3,7 @@ import random
 
 import cv2
 import matplotlib.pyplot as plt
-from PyQt5.QtWidgets import QFileDialog, QMainWindow
+from PyQt6.QtWidgets import QFileDialog, QMainWindow
 from src.bounding_box import BoundingBox
 from src.ui.details_ui import Ui_Dialog as Details_UI
 from src.utils import general_utils

@@ -3,7 +3,7 @@
 
 import sys
 
-from PyQt5 import QtWidgets
+from PyQt6 import QtWidgets
 from src.ui.run_ui import Main_Dialog
 from src.ui.splash import Splash_Dialog
 
@@ -16,4 +16,4 @@ if __name__ == "__main__":
     splash = Splash_Dialog()
     splash.show()
 
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

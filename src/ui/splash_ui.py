@@ -2,12 +2,12 @@
 
 # Form implementation generated from reading ui file 'splash_ui.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.3
+# Created by: PyQt6 UI code generator 5.12.3
 #
 # WARNING! All changes made in this file will be lost!
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Dialog(object):
@@ -16,7 +16,7 @@ class Ui_Dialog(object):
         Dialog.resize(682, 206)
         Dialog.setMinimumSize(QtCore.QSize(682, 203))
         Dialog.setMaximumSize(QtCore.QSize(682, 206))
-        Dialog.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+        Dialog.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.DefaultContextMenu)
         self.lbl_groundtruth_dir_2 = QtWidgets.QLabel(Dialog)
         self.lbl_groundtruth_dir_2.setGeometry(QtCore.QRect(10, 0, 681, 201))
         self.lbl_groundtruth_dir_2.setWordWrap(True)
@@ -44,4 +44,4 @@ if __name__ == "__main__":
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
     Dialog.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
